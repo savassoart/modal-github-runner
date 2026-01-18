@@ -5,16 +5,28 @@ import hashlib
 import logging
 import httpx
 from fastapi import Request, HTTPException
-from image import runner_image
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("modal-github-runner")
 
 # Constants
+RUNNER_VERSION = "2.311.0"
 RUNNER_GROUP_ID = 1
 RUNNER_LABELS = ["self-hosted", "modal"]
 TIMEOUT_SECONDS = 3600
+
+# Canonical runner image definition
+runner_image = (
+    modal.Image.debian_slim()
+    .apt_install('curl', 'git', 'ca-certificates', 'sudo', 'jq')
+    .pip_install("fastapi", "httpx")
+    .run_commands(
+        'mkdir -p /actions-runner',
+        f'curl -L https://github.com/actions/runner/releases/download/v{RUNNER_VERSION}/actions-runner-linux-x64-{RUNNER_VERSION}.tar.gz | tar -xz -C /actions-runner',
+        '/actions-runner/bin/installdependencies.sh'
+    )
+)
 
 app = modal.App("modal-github-runner")
 
@@ -44,7 +56,6 @@ async def verify_signature(request: Request):
 @app.function(image=runner_image, secrets=[github_secret])
 @modal.fastapi_endpoint(method="POST")
 async def github_webhook(request: Request):
-    # Verify signature before processing
     await verify_signature(request)
 
     try:
@@ -97,16 +108,18 @@ async def github_webhook(request: Request):
     logger.info(f"Spawning sandbox for job {job_id}...")
     
     try:
-        # Pass the JIT configuration via an environment variable ('GHA_JIT_CONFIG')
-        # to the Sandbox instead of a command-line argument.
+        # Simple bash command running as root with the mandatory flag
+        # We cd into a fresh temp dir for each job to avoid any state issues
+        cmd = (
+            "mkdir -p /tmp/runner && cp -r /actions-runner/* /tmp/runner/ && "
+            "cd /tmp/runner && export RUNNER_ALLOW_RUNASROOT=1 && ./run.sh --jitconfig $GHA_JIT_CONFIG"
+        )
+        
         modal.Sandbox.create(
-            "bash", "-c", "cp -r /actions-runner/* ~/ && ./run.sh --jitconfig $GHA_JIT_CONFIG",
+            "bash", "-c", cmd,
             image=runner_image,
             app=app,
-            user="runner",
-            workdir="/home/runner",
             timeout=TIMEOUT_SECONDS,
-            secrets=[github_secret],
             env={"GHA_JIT_CONFIG": jit_config}
         )
     except Exception as e:
