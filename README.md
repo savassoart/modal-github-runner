@@ -41,7 +41,7 @@ Refer to the [**DEPLOY.md**](DEPLOY.md) for step-by-step instructions on:
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
