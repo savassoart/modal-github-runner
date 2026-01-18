@@ -36,7 +36,8 @@ Refer to the [**DEPLOY.md**](DEPLOY.md) for step-by-step instructions on:
 
 -   **Modal Sandbox:** Built on top of Modal's serverless runtime, providing sub-second startup times and robust isolation using micro-VM technology.
 -   **JIT Configuration:** Instead of persistent runner tokens, this project uses the `generate-jitconfig` endpoint. This ensures that even if a runner environment were compromised, the credentials are valid for only one specific job.
--   **Custom Images:** The runner environment is defined in `image.py`, allowing you to easily add dependencies (e.g., specific versions of Python, Node.js, or system libraries) that are pre-baked into the runner image.
+-   **Custom Images:** The runner environment is defined directly within `app.py`, allowing you to easily add dependencies (e.g., specific versions of Python, Node.js, or system libraries) that are pre-baked into the runner image.
+-   **Root Execution:** Sandboxes run with `RUNNER_ALLOW_RUNASROOT=1` in ephemeral `/tmp` directories, ensuring compatibility with all GitHub Actions features without permission hurdles.
 
 ## 📄 License
 

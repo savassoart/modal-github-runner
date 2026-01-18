@@ -12,12 +12,14 @@ This guide outlines the steps to deploy this project using Modal.
 1.  **Create a GitHub Personal Access Token (PAT):**
     *   Generate a PAT with the `repo` or `workflow` scope.
 
-2.  **Define a Webhook Secret:**
-    *   Create a random string to use as your `WEBHOOK_SECRET`.
+2.  **Define a Webhook Secret (Mandatory):**
+    *   Create a random string to use as your `WEBHOOK_SECRET`. This is required for validating that requests actually come from GitHub.
 
 3.  **Create a Modal Secret:**
     ```bash
-    modal secret create github-secret GITHUB_TOKEN=your_pat_here WEBHOOK_SECRET=your_webhook_secret_here
+    modal secret create github-secret \
+      GITHUB_TOKEN=your_pat_here \
+      WEBHOOK_SECRET=your_webhook_secret_here
     ```
     *   Replace `your_pat_here` with the PAT you generated.
     *   Replace `your_webhook_secret_here` with your random string.
