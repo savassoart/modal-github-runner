@@ -42,3 +42,12 @@ Refer to the [**DEPLOY.md**](DEPLOY.md) for step-by-step instructions on:
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+---
+
+## 👤 Author
+
+**Manas C. Bavaskar**
+- GitHub: [@manascb1344](https://github.com/manascb1344)
+- Website: [manascb.com](https://manascb.com)
+- LinkedIn: [manas-bavaskar](https://linkedin.com/in/manas-bavaskar)
