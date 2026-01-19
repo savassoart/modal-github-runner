@@ -229,6 +229,13 @@ async def github_webhook(request: Request):
     repo_url = payload.get("repository", {}).get("url")
     repo_full_name = payload.get("repository", {}).get("full_name", "")
     job_id = workflow_job.get("id", "unknown")
+    job_labels = workflow_job.get("labels", [])
+
+    # CHECK FOR MODAL LABEL
+    # Ignore jobs that don't explicitly request 'modal' runner
+    if "modal" not in job_labels:
+        logger.info(f"Ignoring job {job_id} without 'modal' label (labels: {job_labels})")
+        return {"status": "ignored", "reason": "no modal label"}
 
     # Repository allowlist validation
     if ALLOWED_REPOS and repo_full_name not in ALLOWED_REPOS:
