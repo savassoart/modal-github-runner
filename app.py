@@ -222,7 +222,12 @@ async def github_webhook(request: Request):
         logger.error(f"Failed to parse JSON payload: {type(e).__name__}")
         raise HTTPException(status_code=400, detail="Invalid JSON")
 
-    if payload.get("action") != "queued":
+    # Only spawn sandboxes for jobs that GitHub has started (in_progress)
+    # This naturally respects the workflow's max-parallel setting
+    if payload.get("action") != "in_progress":
+        logger.debug(
+            f"Ignoring action '{payload.get('action')}' - only processing in_progress jobs"
+        )
         return {"status": "ignored"}
 
     workflow_job = payload.get("workflow_job", {})
@@ -234,7 +239,9 @@ async def github_webhook(request: Request):
     # CHECK FOR MODAL LABEL
     # Ignore jobs that don't explicitly request 'modal' runner
     if "modal" not in job_labels:
-        logger.info(f"Ignoring job {job_id} without 'modal' label (labels: {job_labels})")
+        logger.info(
+            f"Ignoring job {job_id} without 'modal' label (labels: {job_labels})"
+        )
         return {"status": "ignored", "reason": "no modal label"}
 
     # Repository allowlist validation
