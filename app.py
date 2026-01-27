@@ -138,7 +138,7 @@ def _cleanup_stale_runs():
 runner_image = (
     modal.Image.debian_slim()
     .apt_install("curl", "git", "ca-certificates", "sudo", "jq")
-    .pip_install("fastapi==0.115.0", "httpx==0.27.0")
+    .pip_install("fastapi==0.115.0", "httpx==0.27.0", "pyyaml")
     .run_commands(
         "mkdir -p /actions-runner",
         f"curl -L https://github.com/actions/runner/releases/download/v{RUNNER_VERSION}/actions-runner-linux-x64-{RUNNER_VERSION}.tar.gz | tar -xz -C /actions-runner",
