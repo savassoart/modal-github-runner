@@ -459,7 +459,19 @@ async def github_webhook(request: Request):
 
             # Handle cancellation - terminate sandbox
             if conclusion == "cancelled":
-                # Check if job was in active jobs
+                removed_from_queue = False
+
+                # Check if job was in the queue - remove it if found
+                if run_id in _run_configs:
+                    queue = _run_configs[run_id].queue
+                    for i, queued_job in enumerate(queue):
+                        if queued_job.job_id == job_id:
+                            del queue[i]
+                            logger.info(f"Removed cancelled job {job_id} from queue")
+                            removed_from_queue = True
+                            break
+
+                # Check if job was in active jobs - terminate sandbox
                 if job_id in _active_jobs:
                     try:
                         _active_jobs[job_id].sandbox.terminate()
@@ -479,7 +491,7 @@ async def github_webhook(request: Request):
                             await _try_process_queue(run_id)
 
                 # Fallback: also check by tag for robustness
-                else:
+                elif not removed_from_queue:
                     for sb in modal.Sandbox.list(
                         app_id=app.app_id, tags={"job_id": job_id}
                     ):
